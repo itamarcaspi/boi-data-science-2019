@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 
 # Reproducible Projects and Version Control
 ### Itamar Caspi
-### March 18, 2019 (updated: 2019-11-19)
+### November 25, 2019 (updated: 2019-11-24)
 
 ---
 
@@ -56,7 +56,20 @@ pacman::p_load(tidyvers, tidymodels, knitr, xaringan)
 
 
 
+---
 
+# From Best Practices to Methodology
+
+| Best practice  |  Methodology |
+|:---------------|:-------------|
+| Machine learning  | High dimensional statistics  |
+| Notebooks (R Markdown, Jupyter)  |  `# code annotation` |
+| Version control  |  `mydoc_1_3_new_final_25112019.docx` |
+| Git branches  |  `W:\` |
+| Generate tables (SQL, dplyr, pandas)  | Ask tables (xlsx)  |
+| Reproducibility  |  ?? |
+| R, Python  |  Stata, SAS, EViews |
+| Interdisciplinary teams  | Solo  |
 
 ---
 
@@ -161,6 +174,12 @@ name: tidyverse
 
 
 ---
+# This is not a pipe
+
+&lt;img src="figs/pipe.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+---
 
 # Prerequisite: `%&gt;%` is a pipe
 
@@ -190,7 +209,7 @@ df &lt;- data.frame(x = rnorm(10),
                  z = rnorm(10))
 ```
 
-- Can you guess what this code chunk does?
+- Can you guess what the following code chunk does?
 
 ```r
 df_new &lt;- df[, c("x", "y")]["x" &gt; 0]
@@ -199,7 +218,19 @@ df_new$xx &lt;- df_new$x^2
 
 --
 
-- How about this?
+- How about this one?
+
+
+```r
+df_new &lt;- df %&gt;% 
+  select(x, y) %&gt;% 
+  filter(x &gt; 0) %&gt;% 
+  mutate(xx = x^2)
+```
+
+---
+
+# How to read "piped" code?
 
 
 ```r
@@ -210,13 +241,14 @@ df_new &lt;- df %&gt;%
 ```
 
 
-???
+The above code chunk should be read as:
 
-the "tidyvers" code chunk should be read as "generate a new dataframe `df_new` by taking `df`, _then_ select `x` and `y`, _then_ filter rows where `x` is positive, _then_ mutate a new variable `xx = x^2`
+&gt;"generate a new dataframe `df_new` by taking `df`, _then_ select `x` and `y`, _then_ filter rows where `x` is positive, _then_ mutate a new variable `xx = x^2`"
+
 
 ---
 
-# The Tidyverse
+# Pros
 
 - Following a "tidy" approach makes your code more readable `\(\Rightarrow\)` more reproducible.
 
@@ -226,6 +258,11 @@ the "tidyvers" code chunk should be read as "generate a new dataframe `df_new` b
 
 - As usual, being proficient in both (base R and the tidyverse) will get you far...
 
+
+---
+# The Tidyverse
+
+&lt;img src="figs/tidyverse.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -408,23 +445,14 @@ name: practice
 
 
 ---
-# Your mission
 
-1. Open your first R project and publish it on GitHub.  
-
-2. Clone this course's lecture notes GitHub repository.
-
-
-
----
-
-# Suggested workflow for starting a new R project
+# Suggested workflow for starting a new (desktop) R project
 
 RStudio:
 
 1. Open RStudio.
 2. File -&gt; New Project -&gt; New Directory -&gt; New Project.
-3. Name your project under "Directory name:". Make sure to check "Create git repository".&lt;sup&gt;1&lt;/sup&gt;
+3. Name your project under "Directory name:". Make sure to check "Create git repository".
 
 GitHub Desktop:
 
@@ -434,9 +462,7 @@ GitHub Desktop:
 4. Publish local git repo on GitHub (choose private or public repo).
 
 
-.footnote[
-&lt;sup&gt;1&lt;/sup&gt; RStudio automatically generates a `.gitignore` file that tells git which files to ignore (duh!). Click [here](https://raw.githack.com/uo-ec607/lectures/master/02-git/02-Git.html#57) for further details on how to configure what to ignore. 
-]
+
 
 ---
 
@@ -472,6 +498,27 @@ Syncing:
 2. Change "Current repository" to the cloned repo.
 3. Click the "Fetch origin" button.
 4. __Pull__ any changes made on the remote repo.
+
+
+---
+# Your mission
+
+1. Login to RStudio Cloud.
+
+2. Create your first R project.
+
+3. Initiate Git.&lt;sup&gt;1&lt;/sup&gt;
+
+4. Create a new RMarkdown file.
+
+5. Commit.
+
+
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt; RStudio automatically generates a `.gitignore` file that tells git which files to ignore (duh!). Click [here](https://raw.githack.com/uo-ec607/lectures/master/02-git/02-Git.html#57) for further details on how to configure what to ignore. 
+]
+
+
 
 ---
 class: .title-slide-final, center, inverse, middle

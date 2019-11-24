@@ -2,7 +2,7 @@
 title: "Reproducible Projects and Version Control"
 subtitle: ""
 author: "Itamar Caspi"
-date: "March 18, 2019 (updated: `r Sys.Date()`)"
+date: "November 25, 2019 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, "style/middlebury.css", "style/middlebury-fonts.css"]
@@ -78,7 +78,20 @@ bib <- ReadBib("refs/refs.bib", check = FALSE)
 ```
 
 
+---
 
+# From Best Practices to Methodology
+
+| Best practice  |  Methodology |
+|:---------------|:-------------|
+| Machine learning  | High dimensional statistics  |
+| Notebooks (R Markdown, Jupyter)  |  `# code annotation` |
+| Version control  |  `mydoc_1_3_new_final_25112019.docx` |
+| Git branches  |  `W:\` |
+| Generate tables (SQL, dplyr, pandas)  | Ask tables (xlsx)  |
+| Reproducibility  |  ?? |
+| R, Python  |  Stata, SAS, EViews |
+| Interdisciplinary teams  | Solo  |
 
 ---
 
@@ -187,6 +200,16 @@ name: tidyverse
 
 
 ---
+# This is not a pipe
+
+```{r pipe, echo=FALSE, out.width = "50%", fig.align='center'}
+
+knitr::include_graphics("figs/pipe.jpg")
+
+```
+
+
+---
 
 # Prerequisite: `%>%` is a pipe
 
@@ -217,7 +240,7 @@ df <- data.frame(x = rnorm(10),
 
 ```
 
-- Can you guess what this code chunk does?
+- Can you guess what the following code chunk does?
 ```{r remedy002}
 
 df_new <- df[, c("x", "y")]["x" > 0]
@@ -227,7 +250,7 @@ df_new$xx <- df_new$x^2
 
 --
 
-- How about this?
+- How about this one?
 
 ```{r remedy003}
 
@@ -239,14 +262,26 @@ df_new <- df %>%
 
 ```
 
+---
 
-???
+# How to read "piped" code?
 
-the "tidyvers" code chunk should be read as "generate a new dataframe `df_new` by taking `df`, _then_ select `x` and `y`, _then_ filter rows where `x` is positive, _then_ mutate a new variable `xx = x^2`
+```{r }
+df_new <- df %>% 
+  select(x, y) %>% 
+  filter(x > 0) %>% 
+  mutate(xx = x^2)
+```
+
+
+The above code chunk should be read as:
+
+>"generate a new dataframe `df_new` by taking `df`, _then_ select `x` and `y`, _then_ filter rows where `x` is positive, _then_ mutate a new variable `xx = x^2`"
+
 
 ---
 
-# The Tidyverse
+# Pros
 
 - Following a "tidy" approach makes your code more readable $\Rightarrow$ more reproducible.
 
@@ -256,6 +291,15 @@ the "tidyvers" code chunk should be read as "generate a new dataframe `df_new` b
 
 - As usual, being proficient in both (base R and the tidyverse) will get you far...
 
+
+---
+# The Tidyverse
+
+```{r tidyverse_pic, echo=FALSE, out.width = "100%", fig.align='center'}
+
+knitr::include_graphics("figs/tidyverse.png")
+
+```
 
 ---
 
@@ -434,23 +478,14 @@ name: practice
 
 
 ---
-# Your mission
 
-1. Open your first R project and publish it on GitHub.  
-
-2. Clone this course's lecture notes GitHub repository.
-
-
-
----
-
-# Suggested workflow for starting a new R project
+# Suggested workflow for starting a new (desktop) R project
 
 RStudio:
 
 1. Open RStudio.
 2. File -> New Project -> New Directory -> New Project.
-3. Name your project under "Directory name:". Make sure to check "Create git repository".<sup>1</sup>
+3. Name your project under "Directory name:". Make sure to check "Create git repository".
 
 GitHub Desktop:
 
@@ -460,9 +495,7 @@ GitHub Desktop:
 4. Publish local git repo on GitHub (choose private or public repo).
 
 
-.footnote[
-<sup>1</sup> RStudio automatically generates a `.gitignore` file that tells git which files to ignore (duh!). Click [here](https://raw.githack.com/uo-ec607/lectures/master/02-git/02-Git.html#57) for further details on how to configure what to ignore. 
-]
+
 
 ---
 
@@ -498,6 +531,27 @@ Syncing:
 2. Change "Current repository" to the cloned repo.
 3. Click the "Fetch origin" button.
 4. __Pull__ any changes made on the remote repo.
+
+
+---
+# Your mission
+
+1. Login to RStudio Cloud.
+
+2. Create your first R project.
+
+3. Initiate Git.<sup>1</sup>
+
+4. Create a new RMarkdown file.
+
+5. Commit.
+
+
+.footnote[
+<sup>1</sup> RStudio automatically generates a `.gitignore` file that tells git which files to ignore (duh!). Click [here](https://raw.githack.com/uo-ec607/lectures/master/02-git/02-Git.html#57) for further details on how to configure what to ignore. 
+]
+
+
 
 ---
 class: .title-slide-final, center, inverse, middle

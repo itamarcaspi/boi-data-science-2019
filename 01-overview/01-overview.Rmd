@@ -136,15 +136,16 @@ You can access our GitHub discussion repository [here](https://github.com/ml4eco
 
 # People
 
+Lecturers:
 
-- __Itamar Caspi__  
-  - Head of Monetary Analysis Unit, Research Department, Bank of Israel.
-  - email: [caspi.itamar@gmail.com](mailto:caspi.itamat@gmail.com) 
-  - homepage and blog: [https://itamarcaspi.rbind.io/](https://itamarcaspi.rbind.io/)
+- __Ariel Mansura__, Head of Statistical Methodology Unit, Information and Statistics Department.
   
-- __Ariel Mansura__  
-  - Head of Statistical Methodology Unit, Information and Statistics Department, Bank of Israel.
-  - email: [ariel.mansura@boi.org.il](mailto:ariel.mansura@boi.org.il)
+  
+- __Itamar Caspi__,  Head of Monetary Analysis Unit, Research Department.
+  
+Teaching Assistant:
+
+- __Jonathan Rosen__, Statistical Methodology Unit, Information and Statistics Department.
 
 
 * Meeting hours: after class, on demand.
@@ -192,11 +193,13 @@ name: about
 
 .big[__About__]
 
-How and when to apply ML methods in economics
+Tools of trade: R, Tidyverse, Git...
 
-  - estimate treatment effects
-  - prediction policy
-  - generate new data
+How and when to apply ML methods
+
+  - Generate good quality predictions
+  - Classify data objects  
+  - Organize unstructured data
 
 To do that we will need to understand
 
@@ -214,9 +217,9 @@ To do that we will need to understand
 
 - Computational aspects (e.g., gradient descent)
 
-- Data wrangling (a.k.a. "feature engeneering")
+- Data wrangling (a.k.a. "feature engineering")
 
-- Distributed file systems (e.g., Hadoop, Spark) 
+- Distributed file systems (e.g., Spark) 
 
 
 ]
@@ -227,31 +230,24 @@ To do that we will need to understand
 
 | Week                  | Who                | Topic                                                                          |
 |:----------------------|:--------------------|:---------------------------------------------------------------------------------|
-| [**1**](#week-1)      | Itamar | Course Overview |
-| [**2**](#week-2)      | Itamar | R, Rstudio, git, and GitHub |
-| [**3**](#week-3)      | Ariel  | Regression and K Nearest Neighbors|
-| [**4**](#week-4)      | Ariel  | Classification |
-| [**5**](#week-5)      | Ariel  | Dimenssionality Reduction |
-| [**6**](#week-6)      | Ariel  | Decision Trees and Random Forests| 
-| [**7**](#week-7)      | Ariel  | Unsupervised Learning|
-| [**8**](#week-8)      | Itamar | Prediction in Aid of Estimation I |
-| [**9**](#week-9)      | Itamar | Prediction in Aid of Estimation II |
-| [**10**](#week-10)    | Itamar | Prediction Policy Problems |
-| [**11**](#week-11)    | Itamar | Text as Data |
-| [**12**](#week-12)    | Itamar | TBA |
+| [**1**]      | Itamar | R, RStudio, git, and GitHub |
+| [**2**]      | Itamar | Basic Concepts |
+| [**3**]      | Ariel  | Regression and K Nearest Neighbors|
+| [**4**]      | Ariel  | Regularization |
+| [**5**]      | Ariel  | Classification |
+| [**6**]      | Ariel  | Decision Trees and Random Forests| 
+| [**7**]      | Ariel  | Unsupervised Learning|
+| [**8**]     | Itamar | Text as Data |
 
 
-> __NOTE__: This schedule can (and probably will) go through changes!
+
+> __NOTE__: This schedule might go through changes.
 
 ---
 
 # Readings on ML
 
-> All materials and lecture notes will be available on the [class website](https://ml4econ.github.io/course-spring2019/lectures.html).
-
 .pull-left[
-
-There are __no__ required textbooks.  
 
 A couple of suggestions:
 
@@ -274,22 +270,49 @@ knitr::include_graphics("figs/books.png")
 ```
 
 ]
+
+---
+
+# Readings on Applied ML
+
+.pull-left[
+
+A couple of suggestions:
+
+- [Business Data Science: Combining Machine Learning and Economics to Optimize, Automate, and Accelerate Business Decisions](https://www.amazon.com/Business-Data-Science-Combining-Accelerate/dp/1260452778)  
+Taddy (2019) 
+
+- [Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking](https://www.amazon.com/Data-Science-Business-Data-Analytic-Thinking/dp/1449361323)  
+Provost and Fawcett (2013)  
+
+]
+
+.pull-right[
+
+```{r bussines_books, echo=FALSE, out.width = "100%", fig.align='center'}
+
+knitr::include_graphics("figs/business.png")
+
+```
+
+]
+
+
 ---
 
 # Readings on ML and Economics
 
-> All materials and lecture notes will be available on the [class website](https://ml4econ.github.io/course-spring2019/lectures.html).
-
 .pull-left[
 
-Read these excellent surveys:
+<!-- - [The impact of machine learning on economics](https://www.nber.org/chapters/c14009.pdf) `r Citet(bib, "athey2018the")`   -->
+<!-- In _The Economics of Artificial Intelligence: An Agenda_.   -->
+<!-- University of Chicago Press.    -->
 
-- [The impact of machine learning on economics](https://www.nber.org/chapters/c14009.pdf) `r Citet(bib, "athey2018the")`  
-In _The Economics of Artificial Intelligence: An Agenda_.  
-University of Chicago Press.   
-
-- [Machine learning: an applied econometric approach](https://www.aeaweb.org/articles?id=10.1257/jep.31.2.87) `r Citet(bib, "mullainathan2017machine")`  
+- [Machine Learning: An Applied Econometric Approach](https://www.aeaweb.org/articles?id=10.1257/jep.31.2.87) `r Citet(bib, "mullainathan2017machine")`  
 _Journal of Economic Perspectives_, 31(2), 87-106.  
+
+- [Machine Learning Methods Economists Should Know About](https://www.annualreviews.org/doi/abs/10.1146/annurev-economics-080217-053433) `r Citet(bib, "mullainathan2017machine")`  
+_Annual Review of Economics_, 11, 625-725.  
 
 ]
 
@@ -314,48 +337,49 @@ knitr::include_graphics("figs/susan_sendhil.png")
   
   - [<i class="fab fa-python"></i> Python](https://www.python.org/)  
 
-* Our recommendation: R.  
+* We choose R.  
 
-* Why R? See presentation notes and the [FAQ section](https://ml4econ.github.io/course-spring2019/faq.html) of our class website.  
+* Why R? A matter of taste...
 
 *  We do encourage you to try out Python. However, we will be able to provide limited support for Python users. 
 
+* (Pro tip: You can use both! see the  [reticulate](https://rstudio.github.io/reticulate/) package.)
 
-???
-
-__Why R (and not Python)?__
-
-First things first, there is nothing that [R can do that Pyhton can't](https://www.quora.com/What-can-R-do-that-Python-cant) and [vice verca](https://www.quora.com/What-can-Python-do-that-R-cant). From our perspective, the main difference between the two is their purpose - Python is a general purpose programming language, whereas R was designed by statisticians (and a like) for statisticians. This means that R comes with thousands of built-in and user contributed libraries that help with statistical and econometric analysis. Python can do all that, but in many cases that are important to us, you'll need to code R procedures in Python from scratch.  
-
-For instance, during this course we will make use of the [__causalTree__](https://github.com/susanathey/causalTree) and [__grf__](https://github.com/grf-labs/grf) R packages (created by Susan Athey et al.). These packages use trees and forests in order to estimate _heterogeneous_ treatment effects. __causalTree__ and __grf__ extend the popular __rpart__ R package, to deal with the task of of estimating causal effects. If you want to perform a causal tree analysis with Python, you'll have to program the whole thing by yourself. Though this could serve as a valuable exercise (and it even appears as an open [issue](https://github.com/grf-labs/grf/issues/257) in the __grf__ project repository), it is way beyond the scope of this course.
 
 
 ---
 
-# DataCamp in the classroom
+# RStudio Cloud
 
 
-```{r datacamp, echo=FALSE, out.width = "100%", fig.align='center'}
+```{r cloud, echo=FALSE, out.width = "100%", fig.align='center'}
 
-knitr::include_graphics("figs/datacamp1.gif")
+knitr::include_graphics("figs/rstudio_cloud.gif")
 
 ```
 
 
 ---
 
+# RStudio Projects
+
+
+```{r cloud2, echo=FALSE, out.width = "100%", fig.align='center'}
+
+knitr::include_graphics("figs/rstudio_projects.gif")
+
+```
+
+
+
+---
+
 # Practice
 
-Assignments:
-
-- [DataCamp Classroom](https://www.datacamp.com/enterprise/machine-learning-for-economists): you will be assigned with specific courses that will teach you essential R programming skills.
-
-- Problem sets.
+- In-class problem sets.
 
 
-Projects: 
-
-- [Kaggle](https://www.kaggle.com/c/55750-machine-learning-for-economists-huji-2019#) prediction competition: predict median house value in Boston area.
+- [Kaggle](https://www.kaggle.com/) prediction competition: predict median house value in Boston area.
 
 
 ---
@@ -368,27 +392,6 @@ knitr::include_graphics("figs/kaggle.gif")
 
 ```
 
----
-
-# experimentdatar
-
-We will also  make use of he [`experimentdatar`](https://itamarcaspi.github.io/experimentdatar/) data package that contains publicly available datasets that were used in Susan Athey and Guido Imbens' course ["Machine Learning and Econometrics"](https://www.aeaweb.org/conference/cont-ed/2018-webcasts) (AEA continuing Education, 2018).
-
-- You can install the **development** version from
-[GitHub](https://github.com/itamarcaspi/experimentdatar/)
-```r
-# install.packages("devtools")
-devtools::install_github("itamarcaspi/experimentdatar")
-```
-
-- __EXAMPLE:__ Load the [`experimentdatar`](https://itamarcaspi.github.io/experimentdatar/) package and the `social` dataset:
-```r
-library(experimentdatar)
-data(social)  
-```
-- Tips:  
-  1. Runnig `?social` privides variable definitions.
-  2. Running `dataDetails("social")` will open a link to the paper associated with `social`.
 
 ---
 class: title-slide-section-blue, center, middle
@@ -408,7 +411,6 @@ name: todo
 
 <i class="fas fa-check-square"></i> Download and install [GitHub Desktop](https://desktop.github.com/).  
 
-<i class="fas fa-check-square"></i> Create an account on [DataCamp](https://www.datacamp.com/home) and ask Itamar to invite you to [DataCamp Classroom](https://www.datacamp.com/enterprise/machine-learning-for-economists).
 
 <i class="fas fa-check-square"></i> Create an account on [Kaggle](www.kaggle.com) and ask Itamar to invite you the course's [prediction competition](https://www.kaggle.com/t/97eb0edcbe7c406882c7c067076bedd3).
 
@@ -424,7 +426,7 @@ class: .title-slide-final, center, inverse, middle
 
 # `slides %>% end()`
 
-[<i class="fa fa-github"></i> Source code](https://github.com/ml4econ/notes-spring2019/tree/master/01-overview)  
+[<i class="fa fa-github"></i> Source code](https://github.com/itamarcaspi/boi-data-science-2019/blob/master/01-overview/01-overview.Rmd)  
 
 ---
 # References
