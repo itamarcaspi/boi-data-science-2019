@@ -558,6 +558,7 @@ class: .title-slide-final, center, inverse, middle
 
 # `slides %>% end()`
 
+
 [<i class="fa fa-github"></i> Source code](https://github.com/itamarcaspi/boi-data-science-2019/blob/master/02-reprod-vc/02-reprod-vc.Rmd)  
 
 
