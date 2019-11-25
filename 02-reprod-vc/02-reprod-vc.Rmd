@@ -20,7 +20,7 @@ output:
       
 ---
 
-# Replicating this presentation
+# Replicating this Presentation
 
 R packages used to produce this presentation
 
@@ -132,7 +132,7 @@ name: projects
 
 ---
 
-# An aside: Docker
+# An Aside: Docker
 
 .pull-left[
 ```{r, echo=FALSE, out.width = "100%", fig.align='center'}
@@ -157,7 +157,7 @@ knitr::include_graphics("https://www.docker.com/sites/default/files/social/docke
 
 ---
 
-# RStudio project environment
+# RStudio Project Environment
 
 
 - If your R script starts with `setwd()` or `rm(list=ls())` then are [doing something wrong](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/)!  
@@ -200,7 +200,7 @@ name: tidyverse
 
 
 ---
-# This is not a pipe
+# This is Not a Pipe
 
 ```{r pipe, echo=FALSE, out.width = "50%", fig.align='center'}
 
@@ -229,7 +229,7 @@ The second line of code should be read as: "take `x`, _then_ put it through `f()
 
 ---
 
-# Base R vs. the tidyverse
+# Base R vs. the Tidyverse
 
 - Consider the following data frame:
 ```{r remedy001}
@@ -303,7 +303,7 @@ knitr::include_graphics("figs/tidyverse.png")
 
 ---
 
-# Tidyverse packages
+# Tidyverse Packages
 
 Which packages come with `tidyverse`?
 
@@ -377,7 +377,7 @@ name: git
 
 ---
 
-# Version control
+# Version Control
 
 .pull-left[
 ```{r, echo=FALSE, out.width = "90%", fig.align='center'}
@@ -473,7 +473,7 @@ The source for the definition of GitHub is [Wikipedia](https://en.wikipedia.org/
 class: title-slide-section-blue, center, middle
 name: practice
 
-# Let's practice!
+# Let's Practice!
 -----------------
 
 
@@ -499,7 +499,7 @@ GitHub Desktop:
 
 ---
 
-# Git workflow
+# Git Workflow
 
 The __pull -> stage -> commit -> push__ workflow:
 
@@ -516,7 +516,7 @@ The __pull -> stage -> commit -> push__ workflow:
 
 
 ---
-# Clone and sync a remote GitHub repository
+# Clone and Sync a Remote GitHub Repository
 
 Cloning:
 
@@ -534,7 +534,7 @@ Syncing:
 
 
 ---
-# Your mission
+# Your Mission
 
 1. Login to RStudio Cloud.
 

@@ -53,7 +53,7 @@ bib <- ReadBib("refs/refs.bib", check = FALSE)
 
 class: .title-slide-final, center, inverse, middle
 
-# 10-Year challenge
+# 10-Year Challenge
 
 .big[
 __2009: ML = Maximum Likelihood__  
@@ -63,7 +63,7 @@ __2019: ML = Machine Learning__
 
 ---
 
-# An aside: about the structure of these slides
+# An Aside: About the Structure of These Slides
 
 - This slide deck was created using the R package [xaringan](https://slides.yihui.name/xaringan/#44) (/ʃæ.'riŋ.ɡæn/) and [Rmarkdown](https://rmarkdown.rstudio.com/).
 
@@ -101,49 +101,31 @@ name: logistics
 # Logistics
 
 
----
-# Class website
-
-The (unofficial) class website: [https://ml4econ.github.io/course-spring2019](https://ml4econ.github.io/course-spring2019/index.html)
-
-```{r, echo=FALSE, out.width = "80%", fig.align='center'}
-
-knitr::include_graphics("figs/homepage.gif")
-
-```
-
 
 ---
-# Discussion forum
+# Discussion Forum
 
-We will use a [GitHub discussion repository](https://github.com/ml4econ/discussion-spring2019). To use it, you'll need to create a GitHub account and ask for an invitations from Itamar.  
 
-```{r, echo=FALSE, out.width = "80%", fig.align='center'}
+- Google and [StackExchange](https://stackexchange.com/) are typically the first places to look for answers for computational related questions. It is safe to always assume that you are not the first one to encounter your problem.
 
-knitr::include_graphics("figs/discussions.gif")
-
-```
+- We will also use the BoI's "Success Factors" forum. Yael Dreyfus will provide more detaifls later.  
 
 ???
 
-Google and [StackExchange](https://stackexchange.com/) are typically the first places to look for answers for computational related questions. It is safe to always assume that you are not the first one to encounter your problem.
 
-Nevertheless, we will also be using a private GitHub repository for class discussion. Please post there any questions or requests you may have that are relevant to all course participants, rather than emailing us. All of your classmates will benefit from the public discussions.
-
-You can access our GitHub discussion repository [here](https://github.com/ml4econ/discussion-spring2019), but before you do, make sure that you have created a GitHub account (see instruction [here](https://ml4econ.github.io/course-spring2019/git.html)) and that you have received a collaboration invitations from me (Itamar). Shoot me an email if you haven't received an invitation.
 
 ---
 
 # People
 
-Lecturers:
+Lectures:
 
 - __Ariel Mansura__, Head of Statistical Methodology Unit, Information and Statistics Department.
   
   
 - __Itamar Caspi__,  Head of Monetary Analysis Unit, Research Department.
   
-Teaching Assistant:
+Practical sessions:
 
 - __Jonathan Rosen__, Statistical Methodology Unit, Information and Statistics Department.
 
@@ -186,7 +168,7 @@ name: about
 
 ---
 
-# This course is
+# This Course Is
 
 
 .pull-left[
@@ -226,7 +208,7 @@ To do that we will need to understand
 
 ---
 
-# Syllabus
+# Schedule
 
 | Week                  | Who                | Topic                                                                          |
 |:----------------------|:--------------------|:---------------------------------------------------------------------------------|
@@ -325,10 +307,20 @@ knitr::include_graphics("figs/susan_sendhil.png")
 ```
 ]
 
+---
+# More Resources
+
+The (unofficial) class website: [https://ml4econ.github.io/course-spring2019](https://ml4econ.github.io/course-spring2019/index.html)
+
+```{r, echo=FALSE, out.width = "80%", fig.align='center'}
+
+knitr::include_graphics("figs/homepage.gif")
+
+```
 
 ---
 
-# Programming language
+# Programming Language
 
 
 * Two of the most popular open-source programming languages for data science:  
@@ -374,9 +366,12 @@ knitr::include_graphics("figs/rstudio_projects.gif")
 
 ---
 
-# Practice
+# Hands-on
 
-- In-class problem sets.
+- DIY: [RStudio Primers](https://rstudio.cloud/learn/primers), [DataCamp](https://www.datacamp.com/), etc.
+
+
+- In-class code sessions
 
 
 - [Kaggle](https://www.kaggle.com/) prediction competition: predict median house value in Boston area.
@@ -401,7 +396,15 @@ name: todo
 
 ---
 
-# Homework<sup>*</sup>
+# Officework<sup>
+
+__Cloud:__
+
+<i class="fas fa-check-square"></i> Create an [RStudio Cloud](https://rstudio.cloud/) account and send your username (email) to Itamar.  
+
+<i class="fas fa-check-square"></i> Create an account on [Kaggle](www.kaggle.com) and ask Itamar to invite you the course's [prediction competition](https://www.kaggle.com/t/97eb0edcbe7c406882c7c067076bedd3).
+
+__Office:__
 
 <i class="fas fa-check-square"></i> Download and install [Git](https://git-scm.com/downloads).  
 
@@ -411,14 +414,9 @@ name: todo
 
 <i class="fas fa-check-square"></i> Download and install [GitHub Desktop](https://desktop.github.com/).  
 
+???
+Please consult the [Guides](https://ml4econ.github.io/course-spring2019/RnRStudio.html) section in our course's website.
 
-<i class="fas fa-check-square"></i> Create an account on [Kaggle](www.kaggle.com) and ask Itamar to invite you the course's [prediction competition](https://www.kaggle.com/t/97eb0edcbe7c406882c7c067076bedd3).
-
-
-
-.footnote[
-[*] Please consult the [Guides](https://ml4econ.github.io/course-spring2019/RnRStudio.html) section in our course's website.
-]
 
 
 ---
