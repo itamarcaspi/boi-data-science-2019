@@ -2,8 +2,8 @@
 
 Lecture Notes:
 
-1. [Course Overview](https://github.com/itamarcaspi/boi-data-science-2019/blob/master/01-overview/01-overview.Rmd)
+1. [Course Overview](https://gitcdn.xyz/repo/itamarcaspi/boi-data-science-2019/master/01-overview/01-overview.html)
 
-2. [Reproducible Projects and Version Control](https://github.com/itamarcaspi/boi-data-science-2019/blob/master/02-reprod-vc/02-reprod-vc.Rmd)
+2. [Reproducible Projects and Version Control](https://gitcdn.xyz/repo/itamarcaspi/boi-data-science-2019/master/02-reprod-vc/02-reprod-vc.html)
 
-3. [Basic ML Concepts](https://github.com/itamarcaspi/boi-data-science-2019/blob/master/03-basic-ml-concepts/03-basic-ml-concepts.Rmd)
+3. [Basic ML Concepts](https://gitcdn.xyz/repo/itamarcaspi/boi-data-science-2019/master/03-basic-ml-concepts/03-basic-ml-concepts.html)
