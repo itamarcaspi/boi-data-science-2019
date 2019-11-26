@@ -82,16 +82,16 @@ bib <- ReadBib("refs/refs.bib", check = FALSE)
 
 # From Best Practices to Methodology
 
-| Best practice  |  Methodology |
-|:---------------|:-------------|
-| Machine learning  | High dimensional statistics  |
-| Notebooks (R Markdown, Jupyter)  |  `# code annotation` |
-| Version control  |  `mydoc_1_3_new_final_25112019.docx` |
-| Git branches  |  `W:\` |
-| Generate tables (SQL, dplyr, pandas)  | Ask tables (xlsx)  |
-| Reproducibility  |  ?? |
-| R, Python  |  Stata, SAS, EViews |
-| Interdisciplinary teams  | Solo  |
+| Methodology                           |  Best Practice                 |
+|:--------------------------------------|:-------------------------------|
+| Machine learning                      | High dimensional statistics    |
+| Notebooks (R Markdown, Jupyter)       |  `# code annotation`           |
+| Version control                       |  `mydoc_1_3_new_final_23.docx` |
+| Git branches                          |  `W:\`                         |
+| Generate tables (SQL, dplyr, pandas)  | Ask tables (xlsx)              |
+| Reproducibility                       |  ??                            |
+| R, Python                             | Stata, SAS, EViews             |
+| Interdisciplinary teams               | Solo                           |
 
 ---
 
@@ -232,7 +232,7 @@ The second line of code should be read as: "take `x`, _then_ put it through `f()
 # Base R vs. the Tidyverse
 
 - Consider the following data frame:
-```{r remedy001}
+```{r }
 
 df <- data.frame(x = rnorm(10),
                  y = rnorm(10),
@@ -241,9 +241,9 @@ df <- data.frame(x = rnorm(10),
 ```
 
 - Can you guess what the following code chunk does?
-```{r remedy002}
+```{r }
 
-df_new <- df[, c("x", "y")]["x" > 0]
+df_new <- df[df$x > 0, c("x", "y")]
 df_new$xx <- df_new$x^2
 
 ```
@@ -252,7 +252,7 @@ df_new$xx <- df_new$x^2
 
 - How about this one?
 
-```{r remedy003}
+```{r }
 
 df_new <- df %>% 
   select(x, y) %>% 
@@ -307,9 +307,9 @@ knitr::include_graphics("figs/tidyverse.png")
 
 Which packages come with `tidyverse`?
 
-```{r remedy004}
+```{r }
 
-tidyverse::tidyverse_packages()
+tidyverse_packages()
 
 ```
 

@@ -821,6 +821,146 @@ $$\text{CV-MSE} = \frac{1}{k}\sum_{j=1}^{k}\text{MSE}_j$$
 
 
 ---
+class: title-slide-section-blue, center, middle
+name: economics
+
+# ML and econometrics
+
+
+---
+# ML vs. econometrics
+
+Apart from jargon (Training set vs. in-sample, test-set vs. out of sample, learn vs. estimate, etc.) here is a summary of some of the key differences between ML and econometrics:
+
+
+|   Machine Learning | Econometrics |
+| :----------------- | :---------------------- |
+| prediction | causal inference |
+| $\hat{Y}$ | $\hat{\beta}$ |
+| minimize prediction error | unbiasedness, consictency, efficiency |
+| --- | statistical inference |
+| stable environment | counterfactual analysis |
+| black-box | structural |
+
+
+---
+# ML and causal inference
+
+<midd-blockquote> _”Data are profoundly dumb about causal relationships.”_   
+.right[&mdash; [__Pearl and Mackenzie, _The Book of Why___](http://bayes.cs.ucla.edu/WHY/)]
+</midd-blockquote> 
+
+
+Intervention violates the stable DGP assumption:
+
+$$P(Y|X=x) \neq P(Y|do(X=x)),$$
+where
+
+- $P(Y|X=x)$ is the the probability of $Y$ given that we _observe_ $X=x$.  
+
+- $P(Y|do(X=x))$ is the the probability of $Y$ given that we _intervene_ to set $X=x$
+
+
+
+---
+# "A new study shows that..."
+
+.pull-left[
+
+__TOY PROBLEM:__ Say that we find in the data that `coffee` is a good predictor of `dementia`. Is avoiding `coffee` a good idea?
+
+
+```{r dag1, fig.length=1, fig.show='hide', echo = FALSE}
+
+library(ggdag)
+
+coffee_dag <- dagify(
+       dementia ~ coffee,
+       exposure = "dementia",
+       outcome = "coffee",
+       labels = c("dementia" = "Dementia", "coffee" = "Coffee")
+       ) %>% 
+  tidy_dagitty(layout = "tree")
+
+ggdag(coffee_dag, text = FALSE,
+      text_size = 8, use_labels = "label")
+
+```
+]
+.pull-right[
+```{r, ref.label = 'dag1', echo=FALSE}
+
+```
+]
+
+???
+
+
+
+---
+# To explain or to predict? 
+
+.pull-left[
+
+- In this example `coffee` is a good _predictor_ of `dementia`, despite not having any causal link to it.
+
+- Controlling for `smoking` will give us the causal effect of `coffee` on `dementia`, which is zero.
+
+> In general, causal inference always and everywhere dependes on _assumptions_ about the DGP (i.e., the data never "speaks for itself").
+
+
+```{r dag2, fig.length=1, fig.show='hide', echo = FALSE}
+
+library(ggdag)
+
+coffee_dag <- dagify(dementia ~ smoking,
+       smoking ~ addictive,
+       coffee ~ addictive,
+       exposure = "coffee",
+       outcome = "dementia",
+       labels = c("coffee" = "Coffee", "dementia" = "Dementia", 
+                  "smoking" = "Smoking", "addictive" = "Addictive \n behavior")) %>% 
+  tidy_dagitty(layout = "tree")
+
+ggdag(coffee_dag, text = FALSE,
+      text_size = 8, use_labels = "label")
+
+```
+]
+.pull-right[
+```{r, ref.label = 'dag2', echo=FALSE}
+
+```
+]
+
+???
+
+The title of this slide "To Explain or to Predict?" is the name of a must-read [paper](https://projecteuclid.org/euclid.ss/1294167961) by `r Citet(bib, "shmueli2010explain")` that clarifies the distinction between predicting and explaining.
+
+---
+# ML in aid of econometrics
+
+Consider the standard "treatment effect regression":
+
+$$Y_i=\alpha+\underbrace{\tau D_i}_{\text{low dimensional}} +\underbrace{\sum_{j=1}^{p}\beta_{j}X_{ij}}_{\text{high dimensional}}+\varepsilon_i,\quad\text{for }i=1,\dots,n$$
+where
++ An outcome $Y_i$  
++ A treatment assignment $D_i\in\{0,1\}$  
++ A vector of $p$ control variables $X_i$  
+
+Our object of interest is often $\hat{\tau}$, the average treatment effect (ATE).
+
+
+
+---
+class: .title-slide-final, center, inverse, middle
+
+# `slides::end()`
+
+[<i class="fa fa-github"></i> Source code](https://github.com/ml4econ/notes-spring2019/tree/master/02-basic-ml-concepts)  
+
+
+---
 # References
 
 ```{r, 'refs1', results='asis', echo=FALSE, eval=TRUE}

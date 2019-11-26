@@ -293,7 +293,7 @@ knitr::include_graphics("figs/business.png")
 - [Machine Learning: An Applied Econometric Approach](https://www.aeaweb.org/articles?id=10.1257/jep.31.2.87) `r Citet(bib, "mullainathan2017machine")`  
 _Journal of Economic Perspectives_, 31(2), 87-106.  
 
-- [Machine Learning Methods Economists Should Know About](https://www.annualreviews.org/doi/abs/10.1146/annurev-economics-080217-053433) `r Citet(bib, "mullainathan2017machine")`  
+- [Machine Learning Methods Economists Should Know About](https://www.annualreviews.org/doi/abs/10.1146/annurev-economics-080217-053433) Athey and Imbens (2019)
 _Annual Review of Economics_, 11, 625-725.  
 
 ]

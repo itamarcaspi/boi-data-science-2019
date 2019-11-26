@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 
 # Reproducible Projects and Version Control
 ### Itamar Caspi
-### November 25, 2019 (updated: 2019-11-25)
+### November 25, 2019 (updated: 2019-11-26)
 
 ---
 
@@ -60,16 +60,16 @@ pacman::p_load(tidyvers, tidymodels, knitr, xaringan)
 
 # From Best Practices to Methodology
 
-| Best practice  |  Methodology |
-|:---------------|:-------------|
-| Machine learning  | High dimensional statistics  |
-| Notebooks (R Markdown, Jupyter)  |  `# code annotation` |
-| Version control  |  `mydoc_1_3_new_final_25112019.docx` |
-| Git branches  |  `W:\` |
-| Generate tables (SQL, dplyr, pandas)  | Ask tables (xlsx)  |
-| Reproducibility  |  ?? |
-| R, Python  |  Stata, SAS, EViews |
-| Interdisciplinary teams  | Solo  |
+| Methodology                           |  Best Practice                 |
+|:--------------------------------------|:-------------------------------|
+| Machine learning                      | High dimensional statistics    |
+| Notebooks (R Markdown, Jupyter)       |  `# code annotation`           |
+| Version control                       |  `mydoc_1_3_new_final_23.docx` |
+| Git branches                          |  `W:\`                         |
+| Generate tables (SQL, dplyr, pandas)  | Ask tables (xlsx)              |
+| Reproducibility                       |  ??                            |
+| R, Python                             | Stata, SAS, EViews             |
+| Interdisciplinary teams               | Solo                           |
 
 ---
 
@@ -212,7 +212,7 @@ df &lt;- data.frame(x = rnorm(10),
 - Can you guess what the following code chunk does?
 
 ```r
-df_new &lt;- df[, c("x", "y")]["x" &gt; 0]
+df_new &lt;- df[df$x &gt; 0, c("x", "y")]
 df_new$xx &lt;- df_new$x^2
 ```
 
@@ -272,7 +272,7 @@ Which packages come with `tidyverse`?
 
 
 ```r
-tidyverse::tidyverse_packages()
+tidyverse_packages()
 ```
 
 ```
