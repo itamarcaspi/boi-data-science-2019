@@ -20,43 +20,6 @@ output:
       
 ---
 
-# Replicating this presentation
-
-R packages used to produce this presentation
-
-```{r load packages, message=FALSE}
-
-library(tidyverse) # for data wrangling and plotting
-library(svglite) # for better looking plots
-library(kableExtra) # for better looking tables
-library(RefManageR) # for referencing
-library(truncnorm) # for drawing from a truncated normal distribution
-library(tidymodels) # for modelling
-library(knitr) # for presenting tables
-library(mlbench) # for the Boston Housing data
-library(ggdag) # for plotting DAGs
-
-```
-
-If you are missing a package, run the following command
-
-```
-install.packages("package_name")
-
-```
-
-Alernatively, you can just use the [pacman](https://cran.r-project.org/web/packages/pacman/vignettes/Introduction_to_pacman.html) package that loads and installs packages:
-
-```{r pacman, message=FALSE, warning=FALSE, eval=FALSE}
-
-if (!require("pacman")) install.packages("pacman")
-
-pacman::p_load(tidyverse, svglite, kabelExtra, RefManageR,
-               truncnorm, tidymodels, knitr, mlbench, ggdag)
-
-
-```
-
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(eval = TRUE,
@@ -68,11 +31,28 @@ knitr::opts_chunk$set(eval = TRUE,
                fig.ext = ".svg")
 
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
 
-theme_set(theme_minimal(20))
+# Replicating this Presentation
+
+R packages used to produce this presentation. We use the [pacman](https://cran.r-project.org/web/packages/pacman/vignettes/Introduction_to_pacman.html) package that loads and installs packages:
+
+```{r pacman, message=FALSE, warning=FALSE}
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(
+  tidyverse,   # for data wrangling and visualization
+  tidymodels,  # for data modeling
+  RefManageR,  # for bibliography
+  truncnorm,   # for drawing from truncated normal
+  dagitty,     # for drawing DAGs
+  knitr        # for including graphics
+)
+```
 
 
-
+```{r ggplot_theme, include=FALSE}
+theme_set(theme_gray(20))
 ```
 
 
@@ -88,11 +68,10 @@ bib <- ReadBib("refs/refs.bib", check = FALSE)
 
 ???
 
-
 Hat tip to Grant McDermott who introduced me the awesome __pacman__ package.
 
 ---
-# First things first: "Big Data"
+# First Things First: "Big Data"
 
 <midd-blockquote>"_A billion years ago modern homo sapiens emerged. A billion minutes ago, Christianity began. A billion seconds ago, the IBM PC was released.
 A billion Google searches ago ... was this morning._"  
@@ -126,6 +105,8 @@ include_graphics("figs/venn.jpg")
 2. [The problem of overfitting](#overfitting)  
 
 3. [Too complext? Regularize!](#regularization)  
+
+4. [ML and Causality](#economics)  
 
 
 
@@ -173,7 +154,7 @@ Source: [https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/machine-lear
 
 
 ---
-# An aside: ML and artificial intelligence (AI)
+# An Aside: ML and Artificial Intelligence (AI)
 
 
 ```{r, echo=FALSE, out.width = "70%", fig.align='center'}
@@ -189,7 +170,7 @@ Source: [https://www.magnetic.com/blog/explaining-ai-machine-learning-vs-deep-le
 
 
 ---
-# Unsupervised learning
+# Unsupervised Learning
 
 In _unsupervised_ learning, the goal is to divide high-dimensional data into clusters that are __similar__ in their set of features $(X)$.
 
@@ -217,7 +198,7 @@ include_graphics("figs/clustInflationCropped.jpg")
 
 
 ---
-# Reinforcement learning (RL)
+# Reinforcement Learning (RL)
  
 A definition by `r Citet(bib, "sutton2018rli")`:
 
@@ -233,7 +214,7 @@ Prominent examples:
 - Self driving cars.
 
 ---
-# Supervised learning
+# Supervised Learning
 
 Consider the following data generating process (DGP):
 
@@ -255,7 +236,7 @@ Typical assumptions: (1) independent observations; (2) stable DGP across trainin
 
 ---
 
-# The goal of supervised learning
+# The Goal of Supervised Learning
 
 Use a labelled test set ( $X$ and $Y$ are known) to construct $\hat{f}(X)$ such that it _generalizes_ to unseen test set (only $X$ is known).
 
@@ -271,14 +252,14 @@ In this case, $Y=\{spam, ham\}$, and $X$ is the email text.
 
 ---
 
-# Traditional vs. modern approach to supervised learning
+# Traditional vs. Modern Approach to Supervised Learning
 
 <iframe width="100%" height="400" src="https://www.youtube.com/embed/xl3yQBhI6vY?start=405" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ---
 
-# Traditional vs. modern approach to supervised learning
+# Traditional vs. Modern Approach to Supervised Learning
 
 - Traditional: rules based, e.g., define dictionaries of "good" and "bad" words, and use it to classify text.
 
@@ -287,7 +268,7 @@ In this case, $Y=\{spam, ham\}$, and $X$ is the email text.
 
 
 ---
-# More real world applications of ML
+# More Real World Applications of ML
 
 | task               | outcome $(Y)$   | features $(X)$                          |
 |--------------------|-------------------|-------------------------------------------|
@@ -305,7 +286,7 @@ In this case, $Y=\{spam, ham\}$, and $X$ is the email text.
 
 A fascinating discussion on Amazon's shipping-then-shopping business model appears in the book ["Prediction Machines: The Simple Economics of Artificial Intelligence"](https://books.google.com/books/about/Prediction_Machines.html?id=wJY4DwAAQBAJ) `r Citep(bib, "agrawal2018prediction")`.
 ---
-# Supervised learning algorithms
+# Supervised Learning Algorithms
 
 ML comes with a rich set of parametric and non-parametric prediction algorithms (approximate year of discovery in parenthesis):
 
@@ -319,7 +300,7 @@ ML comes with a rich set of parametric and non-parametric prediction algorithms 
 
 
 ---
-# So, why now?
+# So, Why Now?
 
 - ML methods are data-hungry and computationally expensive. Hence,
 
@@ -340,7 +321,7 @@ include_graphics("figs/matrix.jpeg")
 ```
 
 ---
-# Wait, is ML just glorified statistics?
+# Wait, is ML Just Glorified Statistics?
 
 .pull-left[
 ```{r, echo=FALSE, out.width = "100%", fig.align='center'}
@@ -378,7 +359,7 @@ name: overfitting
 
 
 ---
-# Prediction accuracy
+# Prediction Accuracy
 
 Before we define overfitting, we need to be more explicit about what we mean by "good prediction."
 
@@ -395,7 +376,7 @@ Before we define overfitting, we need to be more explicit about what we mean by 
 - There are other possible forms of loss function (e.g., in classification, as the probability of misclassifying a case, or in terms of economic costs.)
 
 ---
-# The bias-variance decomposition
+# The Bias-Variance Decomposition
 
 Under a __squared error loss function__, an optimal predictive model is one that minimizes the _expected_ squared prediction error.  
 
@@ -409,7 +390,7 @@ where the expectation is over the training set _and_ $(x^0,y^0)$.
 
 
 ---
-# Intuition behind the bias variance trade-off
+# Intuition Behind the Bias Variance Trade-off
 
 Imagine you are a teaching assistant grading exams. You grade the first exam. What is your best prediction of the next exam's grade?
 
@@ -429,7 +410,7 @@ This example is taken from Susan Athey's AEA 2018 lecture, ["Machine Learning an
 Imbens).
 
 ---
-# Exam grade prediction simulation
+# Exam Grade Prediction Simulation
 
 Let's Draw 1000 grade duplets from the following truncated normal distribution
 
@@ -458,7 +439,7 @@ kable(sample_n(test_df, 5), format = "html")
 ```
 
 ---
-# The distribution of predictions
+# The Distribution of Predictions
 
 ```{r, echo=FALSE, fig.width=11, fig.height=5, fig.align='center'}
 
@@ -474,7 +455,7 @@ test_df %>%
 
 ---
 
-# The MSE of grade predictions
+# The MSE of Grade Predictions
 
 ```{r, echo=FALSE}
 test_df %>% 
@@ -492,7 +473,7 @@ __QUESTION:__ Is this a general result? Why?
 
 
 ---
-# Regressions and the bias-variance trade-off
+# Regressions and the Bias-Variance Trade-off
 
 Consider the following hypothetical DGP:
 
@@ -510,7 +491,7 @@ df <- crossing(economist = c("A", "B", "C"),
 ```
 
 ---
-# Scatterplot of the data
+# Scatterplot of the Data
 
 .pull-left[
 ```{r scatter, fig.show='hide', fig.retina=3}
@@ -528,7 +509,7 @@ df %>%
 ```
 ]
 ---
-# Split the sample between 3 economists
+# Split the Sample Between Three Economists
 
 .pull-left[
 ```{r scatter_split, fig.show='hide', fig.retina=3}
@@ -554,7 +535,7 @@ knitr::kable(sample_n(df,6), format = "html")
 ]
 
 ---
-# Underffiting: high bias, low variance
+# Underffiting: High Bias, Low Variance
 
 
 .pull-left[
@@ -584,7 +565,7 @@ df %>%
 ```
 ]
 ---
-# Overfitting: low Bias, high variance
+# Overfitting: Low Bias, High Variance
 
 .pull-left[
 The model: high-degree polynomial
@@ -615,7 +596,7 @@ df %>%
 ]
 
 ---
-# "Justfitting": bias and Variance are just right
+# "Justfitting": Bias and Variance are Just Right
 
 .pull-left[
 The model: linear regression
@@ -645,7 +626,7 @@ df %>%
 ```
 ]
 ---
-# The typical bias-variance trade-off in ML
+# The Typical Bias-Variance Trade-off in ML
 
 
 Typically, ML models strive to find levels of bias and variance that are "just right":
@@ -675,7 +656,7 @@ In high-dimensional settings ( $n\ll p$ )
 <midd-blockquote> $n\ll p$ is prevalent in big-data </midd-blockquote>
 
 ---
-# Bias-variance trade-off in low-dimensional settings
+# Bias-Variance Trade-off in Low-dimensional Settings
 
 .pull-left[
 The model is a 3rd degree polynomial
@@ -741,7 +722,7 @@ Regularization typically results in simpler and more accurate (though “wrong�
 
 ---
 
-# How to penalize overfit?
+# How to Penalize Overfit?
 
 The test set MSE is _unobservable_. How can we tell if a model overfits?  
 
@@ -778,7 +759,7 @@ __CONCERNS__: (1) the algorithm might be sensitive to the choice of training and
 
 ---
 
-# k-fold cross-validation
+# k-fold Cross-validation
 
 Split the training set into $k$ roughly equal-sized parts ( $k=5$ in this example):
 
@@ -794,7 +775,7 @@ $$\text{CV-MSE} = \frac{1}{k}\sum_{j=1}^{k}\text{MSE}_j$$
 
 ---
 
-# Which model to choose?
+# Which Model to Choose?
 
 
 - Recall that the test-MSE is unobservable.
@@ -807,7 +788,7 @@ $$\text{CV-MSE} = \frac{1}{k}\sum_{j=1}^{k}\text{MSE}_j$$
 
 ---
 
-# Sounds familiar?
+# Sounds Familiar?
 
 - In a way, you probably already know this:  
 
@@ -824,27 +805,11 @@ $$\text{CV-MSE} = \frac{1}{k}\sum_{j=1}^{k}\text{MSE}_j$$
 class: title-slide-section-blue, center, middle
 name: economics
 
-# ML and econometrics
+# ML and Causality
 
 
 ---
-# ML vs. econometrics
-
-Apart from jargon (Training set vs. in-sample, test-set vs. out of sample, learn vs. estimate, etc.) here is a summary of some of the key differences between ML and econometrics:
-
-
-|   Machine Learning | Econometrics |
-| :----------------- | :---------------------- |
-| prediction | causal inference |
-| $\hat{Y}$ | $\hat{\beta}$ |
-| minimize prediction error | unbiasedness, consictency, efficiency |
-| --- | statistical inference |
-| stable environment | counterfactual analysis |
-| black-box | structural |
-
-
----
-# ML and causal inference
+# ML and Causal Inference
 
 <midd-blockquote> _”Data are profoundly dumb about causal relationships.”_   
 .right[&mdash; [__Pearl and Mackenzie, _The Book of Why___](http://bayes.cs.ucla.edu/WHY/)]
@@ -861,70 +826,30 @@ where
 - $P(Y|do(X=x))$ is the the probability of $Y$ given that we _intervene_ to set $X=x$
 
 
-
 ---
-# "A new study shows that..."
+# To Explain or to Predict? 
 
 .pull-left[
 
-__TOY PROBLEM:__ Say that we find in the data that `coffee` is a good predictor of `dementia`. Is avoiding `coffee` a good idea?
+- In this example `Education` is a good _predictor_ of `Wage`.
 
-
-```{r dag1, fig.length=1, fig.show='hide', echo = FALSE}
-
-library(ggdag)
-
-coffee_dag <- dagify(
-       dementia ~ coffee,
-       exposure = "dementia",
-       outcome = "coffee",
-       labels = c("dementia" = "Dementia", "coffee" = "Coffee")
-       ) %>% 
-  tidy_dagitty(layout = "tree")
-
-ggdag(coffee_dag, text = FALSE,
-      text_size = 8, use_labels = "label")
-
-```
-]
-.pull-right[
-```{r, ref.label = 'dag1', echo=FALSE}
-
-```
-]
-
-???
-
-
-
----
-# To explain or to predict? 
-
-.pull-left[
-
-- In this example `coffee` is a good _predictor_ of `dementia`, despite not having any causal link to it.
-
-- Controlling for `smoking` will give us the causal effect of `coffee` on `dementia`, which is zero.
+- Nevertheless, the estimate of the causal effect will be confounded by _unobserves_ `Ability`.
 
 > In general, causal inference always and everywhere dependes on _assumptions_ about the DGP (i.e., the data never "speaks for itself").
 
 
-```{r dag2, fig.length=1, fig.show='hide', echo = FALSE}
-
-library(ggdag)
-
-coffee_dag <- dagify(dementia ~ smoking,
-       smoking ~ addictive,
-       coffee ~ addictive,
-       exposure = "coffee",
-       outcome = "dementia",
-       labels = c("coffee" = "Coffee", "dementia" = "Dementia", 
-                  "smoking" = "Smoking", "addictive" = "Addictive \n behavior")) %>% 
-  tidy_dagitty(layout = "tree")
-
-ggdag(coffee_dag, text = FALSE,
-      text_size = 8, use_labels = "label")
-
+```{r dag2, fig.show='hide', echo = FALSE, fig.width=1, fig.height=1, out.width='30%'}
+g <- dagitty('dag {
+    Ability   [pos="1,0"]
+    Education [pos="0,1"]
+    Wage      [pos="2,1"]
+    
+    Ability -> Wage
+    Ability -> Education
+    Education -> Wage
+}'
+)
+plot(g)
 ```
 ]
 .pull-right[
@@ -938,7 +863,23 @@ ggdag(coffee_dag, text = FALSE,
 The title of this slide "To Explain or to Predict?" is the name of a must-read [paper](https://projecteuclid.org/euclid.ss/1294167961) by `r Citet(bib, "shmueli2010explain")` that clarifies the distinction between predicting and explaining.
 
 ---
-# ML in aid of econometrics
+# ML vs. Econometrics
+
+Apart from jargon (Training set vs. in-sample, test-set vs. out of sample, learn vs. estimate, etc.) here is a summary of some of the key differences between ML and econometrics:
+
+
+|   Machine Learning | Econometrics |
+| :----------------- | :---------------------- |
+| prediction | causal inference |
+| $\hat{Y}$ | $\hat{\beta}$ |
+| minimize prediction error | unbiasedness, consictency, efficiency |
+| --- | statistical inference |
+| stable environment | counterfactual analysis |
+| black-box | structural |
+
+
+---
+# ML in Aid of Econometrics
 
 Consider the standard "treatment effect regression":
 
@@ -965,12 +906,5 @@ class: .title-slide-final, center, inverse, middle
 
 ```{r, 'refs1', results='asis', echo=FALSE, eval=TRUE}
 PrintBibliography(bib, start = 1, end = 5)
-```
-
----
-# References
-
-```{r, 'refs2', results='asis', echo=FALSE, eval=TRUE}
-PrintBibliography(bib, start = 6, end = 7)
 ```
 

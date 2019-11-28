@@ -16,44 +16,31 @@ class: center, middle, inverse, title-slide
 
 # Basic Machine Learning Concepts
 ### Itamar Caspi
-### March 10, 2019 (updated: 2019-11-25)
+### March 10, 2019 (updated: 2019-11-28)
 
 ---
 
 
-# Replicating this presentation
-
-R packages used to produce this presentation
 
 
-```r
-library(tidyverse) # for data wrangling and plotting
-library(svglite) # for better looking plots
-library(kableExtra) # for better looking tables
-library(RefManageR) # for referencing
-library(truncnorm) # for drawing from a truncated normal distribution
-library(tidymodels) # for modelling
-library(knitr) # for presenting tables
-library(mlbench) # for the Boston Housing data
-library(ggdag) # for plotting DAGs
-```
+# Replicating this Presentation
 
-If you are missing a package, run the following command
-
-```
-install.packages("package_name")
-
-```
-
-Alernatively, you can just use the [pacman](https://cran.r-project.org/web/packages/pacman/vignettes/Introduction_to_pacman.html) package that loads and installs packages:
+R packages used to produce this presentation. We use the [pacman](https://cran.r-project.org/web/packages/pacman/vignettes/Introduction_to_pacman.html) package that loads and installs packages:
 
 
 ```r
 if (!require("pacman")) install.packages("pacman")
 
-pacman::p_load(tidyverse, svglite, kabelExtra, RefManageR,
-               truncnorm, tidymodels, knitr, mlbench, ggdag)
+pacman::p_load(
+  tidyverse,   # for data wrangling and visualization
+  tidymodels,  # for data modeling
+  RefManageR,  # for bibliography
+  truncnorm,   # for drawing from truncated normal
+  dagitty,     # for drawing DAGs
+  knitr        # for including graphics
+)
 ```
+
 
 
 
@@ -62,11 +49,10 @@ pacman::p_load(tidyverse, svglite, kabelExtra, RefManageR,
 
 ???
 
-
 Hat tip to Grant McDermott who introduced me the awesome __pacman__ package.
 
 ---
-# First things first: "Big Data"
+# First Things First: "Big Data"
 
 &lt;midd-blockquote&gt;"_A billion years ago modern homo sapiens emerged. A billion minutes ago, Christianity began. A billion seconds ago, the IBM PC was released.
 A billion Google searches ago ... was this morning._"  
@@ -95,6 +81,8 @@ The 4 Vs of big data:
 2. [The problem of overfitting](#overfitting)  
 
 3. [Too complext? Regularize!](#regularization)  
+
+4. [ML and Causality](#economics)  
 
 
 
@@ -138,7 +126,7 @@ Source: [https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/machine-lear
 
 
 ---
-# An aside: ML and artificial intelligence (AI)
+# An Aside: ML and Artificial Intelligence (AI)
 
 
 &lt;img src="figs/DL-ML-AI.png" width="70%" style="display: block; margin: auto;" /&gt;
@@ -150,7 +138,7 @@ Source: [https://www.magnetic.com/blog/explaining-ai-machine-learning-vs-deep-le
 
 
 ---
-# Unsupervised learning
+# Unsupervised Learning
 
 In _unsupervised_ learning, the goal is to divide high-dimensional data into clusters that are __similar__ in their set of features `\((X)\)`.
 
@@ -174,7 +162,7 @@ Applications:
 
 
 ---
-# Reinforcement learning (RL)
+# Reinforcement Learning (RL)
  
 A definition by [Sutton and Barto (2018)](#bib-sutton2018rli):
 
@@ -190,7 +178,7 @@ Prominent examples:
 - Self driving cars.
 
 ---
-# Supervised learning
+# Supervised Learning
 
 Consider the following data generating process (DGP):
 
@@ -208,7 +196,7 @@ Typical assumptions: (1) independent observations; (2) stable DGP across trainin
 
 ---
 
-# The goal of supervised learning
+# The Goal of Supervised Learning
 
 Use a labelled test set ( `\(X\)` and `\(Y\)` are known) to construct `\(\hat{f}(X)\)` such that it _generalizes_ to unseen test set (only `\(X\)` is known).
 
@@ -220,14 +208,14 @@ In this case, `\(Y=\{spam, ham\}\)`, and `\(X\)` is the email text.
 
 ---
 
-# Traditional vs. modern approach to supervised learning
+# Traditional vs. Modern Approach to Supervised Learning
 
 &lt;iframe width="100%" height="400" src="https://www.youtube.com/embed/xl3yQBhI6vY?start=405" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
 
 
 ---
 
-# Traditional vs. modern approach to supervised learning
+# Traditional vs. Modern Approach to Supervised Learning
 
 - Traditional: rules based, e.g., define dictionaries of "good" and "bad" words, and use it to classify text.
 
@@ -236,7 +224,7 @@ In this case, `\(Y=\{spam, ham\}\)`, and `\(X\)` is the email text.
 
 
 ---
-# More real world applications of ML
+# More Real World Applications of ML
 
 | task               | outcome `\((Y)\)`   | features `\((X)\)`                          |
 |--------------------|-------------------|-------------------------------------------|
@@ -254,7 +242,7 @@ In this case, `\(Y=\{spam, ham\}\)`, and `\(X\)` is the email text.
 
 A fascinating discussion on Amazon's shipping-then-shopping business model appears in the book ["Prediction Machines: The Simple Economics of Artificial Intelligence"](https://books.google.com/books/about/Prediction_Machines.html?id=wJY4DwAAQBAJ) ([Agrawal, Gans, and Goldfarb, 2018](#bib-agrawal2018prediction)).
 ---
-# Supervised learning algorithms
+# Supervised Learning Algorithms
 
 ML comes with a rich set of parametric and non-parametric prediction algorithms (approximate year of discovery in parenthesis):
 
@@ -268,7 +256,7 @@ ML comes with a rich set of parametric and non-parametric prediction algorithms 
 
 
 ---
-# So, why now?
+# So, Why Now?
 
 - ML methods are data-hungry and computationally expensive. Hence,
 
@@ -285,7 +273,7 @@ $$ \text{big data} + \text{computational advancements} = \text{the rise of ML}$$
 &lt;img src="figs/matrix.jpeg" width="25%" style="display: block; margin: auto;" /&gt;
 
 ---
-# Wait, is ML just glorified statistics?
+# Wait, is ML Just Glorified Statistics?
 
 .pull-left[
 &lt;img src="figs/frames.jpg" width="100%" style="display: block; margin: auto;" /&gt;
@@ -319,7 +307,7 @@ name: overfitting
 
 
 ---
-# Prediction accuracy
+# Prediction Accuracy
 
 Before we define overfitting, we need to be more explicit about what we mean by "good prediction."
 
@@ -336,7 +324,7 @@ Before we define overfitting, we need to be more explicit about what we mean by 
 - There are other possible forms of loss function (e.g., in classification, as the probability of misclassifying a case, or in terms of economic costs.)
 
 ---
-# The bias-variance decomposition
+# The Bias-Variance Decomposition
 
 Under a __squared error loss function__, an optimal predictive model is one that minimizes the _expected_ squared prediction error.  
 
@@ -350,7 +338,7 @@ where the expectation is over the training set _and_ `\((x^0,y^0)\)`.
 
 
 ---
-# Intuition behind the bias variance trade-off
+# Intuition Behind the Bias Variance Trade-off
 
 Imagine you are a teaching assistant grading exams. You grade the first exam. What is your best prediction of the next exam's grade?
 
@@ -370,7 +358,7 @@ This example is taken from Susan Athey's AEA 2018 lecture, ["Machine Learning an
 Imbens).
 
 ---
-# Exam grade prediction simulation
+# Exam Grade Prediction Simulation
 
 Let's Draw 1000 grade duplets from the following truncated normal distribution
 
@@ -433,13 +421,13 @@ Here a small sample from our simulated table:
 &lt;/table&gt;
 
 ---
-# The distribution of predictions
+# The Distribution of Predictions
 
 &lt;img src="03-basic-ml-concepts_files/figure-html/unnamed-chunk-11-1..svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# The MSE of grade predictions
+# The MSE of Grade Predictions
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -463,7 +451,7 @@ __QUESTION:__ Is this a general result? Why?
 
 
 ---
-# Regressions and the bias-variance trade-off
+# Regressions and the Bias-Variance Trade-off
 
 Consider the following hypothetical DGP:
 
@@ -481,7 +469,7 @@ df &lt;- crossing(economist = c("A", "B", "C"),
 ```
 
 ---
-# Scatterplot of the data
+# Scatterplot of the Data
 
 .pull-left[
 
@@ -496,7 +484,7 @@ df %&gt;%
 ![](03-basic-ml-concepts_files/figure-html/unnamed-chunk-13-1..svg)&lt;!-- --&gt;
 ]
 ---
-# Split the sample between 3 economists
+# Split the Sample Between Three Economists
 
 .pull-left[
 
@@ -567,7 +555,7 @@ knitr::kable(sample_n(df,6), format = "html")
 ]
 
 ---
-# Underffiting: high bias, low variance
+# Underffiting: High Bias, Low Variance
 
 
 .pull-left[
@@ -594,7 +582,7 @@ df %&gt;%
 ![](03-basic-ml-concepts_files/figure-html/unnamed-chunk-15-1..svg)&lt;!-- --&gt;
 ]
 ---
-# Overfitting: low Bias, high variance
+# Overfitting: Low Bias, High Variance
 
 .pull-left[
 The model: high-degree polynomial
@@ -622,7 +610,7 @@ df %&gt;%
 ]
 
 ---
-# "Justfitting": bias and Variance are just right
+# "Justfitting": Bias and Variance are Just Right
 
 .pull-left[
 The model: linear regression
@@ -649,7 +637,7 @@ df %&gt;%
 ![](03-basic-ml-concepts_files/figure-html/unnamed-chunk-17-1..svg)&lt;!-- --&gt;
 ]
 ---
-# The typical bias-variance trade-off in ML
+# The Typical Bias-Variance Trade-off in ML
 
 
 Typically, ML models strive to find levels of bias and variance that are "just right":
@@ -675,7 +663,7 @@ In high-dimensional settings ( `\(n\ll p\)` )
 &lt;midd-blockquote&gt; `\(n\ll p\)` is prevalent in big-data &lt;/midd-blockquote&gt;
 
 ---
-# Bias-variance trade-off in low-dimensional settings
+# Bias-Variance Trade-off in Low-dimensional Settings
 
 .pull-left[
 The model is a 3rd degree polynomial
@@ -718,7 +706,7 @@ Regularization typically results in simpler and more accurate (though “wrong�
 
 ---
 
-# How to penalize overfit?
+# How to Penalize Overfit?
 
 The test set MSE is _unobservable_. How can we tell if a model overfits?  
 
@@ -751,7 +739,7 @@ __CONCERNS__: (1) the algorithm might be sensitive to the choice of training and
 
 ---
 
-# k-fold cross-validation
+# k-fold Cross-validation
 
 Split the training set into `\(k\)` roughly equal-sized parts ( `\(k=5\)` in this example):
 
@@ -763,7 +751,7 @@ Approximate the test-MSE using the mean of `\(k\)` split-MSEs
 
 ---
 
-# Which model to choose?
+# Which Model to Choose?
 
 
 - Recall that the test-MSE is unobservable.
@@ -776,7 +764,7 @@ Approximate the test-MSE using the mean of `\(k\)` split-MSEs
 
 ---
 
-# Sounds familiar?
+# Sounds Familiar?
 
 - In a way, you probably already know this:  
 
@@ -790,6 +778,92 @@ Approximate the test-MSE using the mean of `\(k\)` split-MSEs
 
 
 ---
+class: title-slide-section-blue, center, middle
+name: economics
+
+# ML and Causality
+
+
+---
+# ML and Causal Inference
+
+&lt;midd-blockquote&gt; _”Data are profoundly dumb about causal relationships.”_   
+.right[&amp;mdash; [__Pearl and Mackenzie, _The Book of Why___](http://bayes.cs.ucla.edu/WHY/)]
+&lt;/midd-blockquote&gt; 
+
+
+Intervention violates the stable DGP assumption:
+
+`$$P(Y|X=x) \neq P(Y|do(X=x)),$$`
+where
+
+- `\(P(Y|X=x)\)` is the the probability of `\(Y\)` given that we _observe_ `\(X=x\)`.  
+
+- `\(P(Y|do(X=x))\)` is the the probability of `\(Y\)` given that we _intervene_ to set `\(X=x\)`
+
+
+---
+# To Explain or to Predict? 
+
+.pull-left[
+
+- In this example `Education` is a good _predictor_ of `Wage`.
+
+- Nevertheless, the estimate of the causal effect will be confounded by _unobserves_ `Ability`.
+
+&gt; In general, causal inference always and everywhere dependes on _assumptions_ about the DGP (i.e., the data never "speaks for itself").
+
+
+
+]
+.pull-right[
+![](03-basic-ml-concepts_files/figure-html/unnamed-chunk-22-1..svg)&lt;!-- --&gt;
+]
+
+???
+
+The title of this slide "To Explain or to Predict?" is the name of a must-read [paper](https://projecteuclid.org/euclid.ss/1294167961) by [Shmueli (2010)](#bib-shmueli2010explain) that clarifies the distinction between predicting and explaining.
+
+---
+# ML vs. Econometrics
+
+Apart from jargon (Training set vs. in-sample, test-set vs. out of sample, learn vs. estimate, etc.) here is a summary of some of the key differences between ML and econometrics:
+
+
+|   Machine Learning | Econometrics |
+| :----------------- | :---------------------- |
+| prediction | causal inference |
+| `\(\hat{Y}\)` | `\(\hat{\beta}\)` |
+| minimize prediction error | unbiasedness, consictency, efficiency |
+| --- | statistical inference |
+| stable environment | counterfactual analysis |
+| black-box | structural |
+
+
+---
+# ML in Aid of Econometrics
+
+Consider the standard "treatment effect regression":
+
+`$$Y_i=\alpha+\underbrace{\tau D_i}_{\text{low dimensional}} +\underbrace{\sum_{j=1}^{p}\beta_{j}X_{ij}}_{\text{high dimensional}}+\varepsilon_i,\quad\text{for }i=1,\dots,n$$`
+where
++ An outcome `\(Y_i\)`  
++ A treatment assignment `\(D_i\in\{0,1\}\)`  
++ A vector of `\(p\)` control variables `\(X_i\)`  
+
+Our object of interest is often `\(\hat{\tau}\)`, the average treatment effect (ATE).
+
+
+
+---
+class: .title-slide-final, center, inverse, middle
+
+# `slides::end()`
+
+[&lt;i class="fa fa-github"&gt;&lt;/i&gt; Source code](https://github.com/ml4econ/notes-spring2019/tree/master/02-basic-ml-concepts)  
+
+
+---
 # References
 
 &lt;a
@@ -798,9 +872,10 @@ A. Agrawal, J. Gans, and A. Goldfarb. _Prediction Machines: The
 Simple Economics of Artificial Intelligence_. Harvard Business
 Review Press, 2018.
 
-[2] S. Athey. "The impact of machine learning on economics". In:
-_The Economics of Artificial Intelligence: An Agenda_. University
-of Chicago Press, 2018.
+&lt;a name=bib-athey2018the&gt;&lt;/a&gt;[[2]](#cite-athey2018the) S. Athey.
+"The impact of machine learning on economics". In: _The Economics
+of Artificial Intelligence: An Agenda_. University of Chicago
+Press, 2018.
 
 &lt;a
 name=bib-breiman2001statistical&gt;&lt;/a&gt;[[3]](#cite-breiman2001statistical)
@@ -808,26 +883,13 @@ L. Breiman. "Statistical modeling: The two cultures (with comments
 and a rejoinder by the author)". In: _Statistical science_ 16.3
 (2001), pp. 199-231.
 
-&lt;a
-name=bib-harrison1978hedonic&gt;&lt;/a&gt;[[4]](#cite-harrison1978hedonic)
-D. Harrison Jr and D. L. Rubinfeld. "Hedonic housing prices and
-the demand for clean air". In: _Journal of environmental economics
-and management_ 5.1 (1978), pp. 81-102.
+&lt;a name=bib-shmueli2010explain&gt;&lt;/a&gt;[[4]](#cite-shmueli2010explain)
+G. Shmueli. "To explain or to predict?" In: _Statistical science_
+25.3 (2010), pp. 289-310.
 
-[5] T. Hastie, R. Tibshirani, and J. Friedman. _The Elements of
-Statistical Learning: Data Mining, Inference, and Prediction,
-Second Edition_. Springer, פבר. 2009. ISBN: 9780387848570.
-
----
-# References
-
-[1] G. James, T. Hastie, D. Witten, et al. _An Introduction to
-Statistical Learning: With Applications in R_. Springer Texts in
-Statistics. Springer London, Limited, 2013. ISBN: 9781461471370.
-
-[2] S. Mullainathan and J. Spiess. "Machine learning: an applied
-econometric approach". In: _Journal of Economic Perspectives_ 31.2
-(2017), pp. 87-106.
+&lt;a name=bib-sutton2018rli&gt;&lt;/a&gt;[[5]](#cite-sutton2018rli) R. S.
+Sutton and A. G. Barto. _Reinforcement Learning: An Introduction_.
+MIT Press, 2018.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
