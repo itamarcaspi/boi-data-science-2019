@@ -383,39 +383,39 @@ Here a small sample from our simulated table:
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 368 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 72.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 308 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 92 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 79 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 92 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 81.0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 334 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 76 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 86 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 76 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 73.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 719 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 87 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 79 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 87 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 78.5 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 642 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 56 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 80.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 681 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 87 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 84 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 87 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 78.5 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 128 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 78 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 59.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 83 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 75.0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 443 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 69 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 91 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 53 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 91 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 80.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 69 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 69.5 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -438,14 +438,14 @@ Here a small sample from our simulated table:
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 332.952 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 218.12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 311.792 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 199.1132 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
 
-Hence, the shrinked prediction turns out to be better (in the sense of MSE) then the unbiased one!
+Hence, the shrunk prediction turns out to be better (in the sense of MSE) then the unbiased one!
 
 __QUESTION:__ Is this a general result? Why?
 
@@ -809,9 +809,9 @@ where
 
 - In this example `Education` is a good _predictor_ of `Wage`.
 
-- Nevertheless, the estimate of the causal effect will be confounded by _unobserves_ `Ability`.
+- Nevertheless, the estimate of the causal effect will be confounded by _unobserved_ `Ability`.
 
-&gt; In general, causal inference always and everywhere dependes on _assumptions_ about the DGP (i.e., the data never "speaks for itself").
+&gt; In general, causal inference always and everywhere depends on _assumptions_ about the DGP (i.e., the data never "speaks for itself").
 
 
 
@@ -834,7 +834,7 @@ Apart from jargon (Training set vs. in-sample, test-set vs. out of sample, learn
 | :----------------- | :---------------------- |
 | prediction | causal inference |
 | `\(\hat{Y}\)` | `\(\hat{\beta}\)` |
-| minimize prediction error | unbiasedness, consictency, efficiency |
+| minimize prediction error | unbiasedness, consistency, efficiency |
 | --- | statistical inference |
 | stable environment | counterfactual analysis |
 | black-box | structural |

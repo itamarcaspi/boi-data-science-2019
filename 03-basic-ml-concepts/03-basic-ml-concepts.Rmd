@@ -467,7 +467,7 @@ test_df %>%
 ```
 
 
-Hence, the shrinked prediction turns out to be better (in the sense of MSE) then the unbiased one!
+Hence, the shrunk prediction turns out to be better (in the sense of MSE) then the unbiased one!
 
 __QUESTION:__ Is this a general result? Why?
 
@@ -833,9 +833,9 @@ where
 
 - In this example `Education` is a good _predictor_ of `Wage`.
 
-- Nevertheless, the estimate of the causal effect will be confounded by _unobserves_ `Ability`.
+- Nevertheless, the estimate of the causal effect will be confounded by _unobserved_ `Ability`.
 
-> In general, causal inference always and everywhere dependes on _assumptions_ about the DGP (i.e., the data never "speaks for itself").
+> In general, causal inference always and everywhere depends on _assumptions_ about the DGP (i.e., the data never "speaks for itself").
 
 
 ```{r dag2, fig.show='hide', echo = FALSE, fig.width=1, fig.height=1, out.width='30%'}
@@ -872,7 +872,7 @@ Apart from jargon (Training set vs. in-sample, test-set vs. out of sample, learn
 | :----------------- | :---------------------- |
 | prediction | causal inference |
 | $\hat{Y}$ | $\hat{\beta}$ |
-| minimize prediction error | unbiasedness, consictency, efficiency |
+| minimize prediction error | unbiasedness, consistency, efficiency |
 | --- | statistical inference |
 | stable environment | counterfactual analysis |
 | black-box | structural |
