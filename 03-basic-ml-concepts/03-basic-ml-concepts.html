@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 
 # Basic Machine Learning Concepts
 ### Itamar Caspi
-### March 10, 2019 (updated: 2019-11-28)
+### March 10, 2019 (updated: 2019-11-29)
 
 ---
 
@@ -96,7 +96,7 @@ name: concepts
 ---
 # So, what is ML?
 
-A concise definition by [Athey (2018)](#bib-athey2018the):
+A concise definition by &lt;a name=cite-athey2018the&gt;&lt;/a&gt;[Athey (2018)](#bib-athey2018the):
 
 &lt;midd-blockquote&gt;
 "...[M]achine learning is a field
@@ -164,7 +164,7 @@ Applications:
 ---
 # Reinforcement Learning (RL)
  
-A definition by [Sutton and Barto (2018)](#bib-sutton2018rli):
+A definition by &lt;a name=cite-sutton2018rli&gt;&lt;/a&gt;[Sutton and Barto (2018)](#bib-sutton2018rli):
 
 &lt;midd-blockquote&gt;
 _"Reinforcement learning is learning what to do—how to map situations to actions—so as to maximize a numerical reward signal. The learner is not told which actions to take, but instead must discover which actions yield the most reward by trying them."_
@@ -240,7 +240,7 @@ In this case, `\(Y=\{spam, ham\}\)`, and `\(X\)` is the email text.
 
 ???
 
-A fascinating discussion on Amazon's shipping-then-shopping business model appears in the book ["Prediction Machines: The Simple Economics of Artificial Intelligence"](https://books.google.com/books/about/Prediction_Machines.html?id=wJY4DwAAQBAJ) ([Agrawal, Gans, and Goldfarb, 2018](#bib-agrawal2018prediction)).
+A fascinating discussion on Amazon's shipping-then-shopping business model appears in the book ["Prediction Machines: The Simple Economics of Artificial Intelligence"](https://books.google.com/books/about/Prediction_Machines.html?id=wJY4DwAAQBAJ) &lt;a name=cite-agrawal2018prediction&gt;&lt;/a&gt;([Agrawal, Gans, and Goldfarb, 2018](#bib-agrawal2018prediction)).
 ---
 # Supervised Learning Algorithms
 
@@ -280,7 +280,7 @@ $$ \text{big data} + \text{computational advancements} = \text{the rise of ML}$$
 ]
 
 .pull-right[
-The "two cultures" ([Breiman, 2001](#bib-breiman2001statistical)):
+The "two cultures" &lt;a name=cite-breiman2001statistical&gt;&lt;/a&gt;([Breiman, 2001](#bib-breiman2001statistical)):
 
 - Statisticians assume a data generating process and try to learn  about it using data (parameters, confidence intervals, assumptions.) 
 
@@ -383,39 +383,39 @@ Here a small sample from our simulated table:
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 308 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 92 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 79 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 92 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 81.0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 719 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 87 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 79 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 87 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 78.5 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 681 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 87 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 84 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 87 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 78.5 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 89 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 83 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75.0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 443 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 407 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 69 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 91 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 94 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 69 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 69.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 965 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 64 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 79.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 611 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 76 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 76 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 73.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 358 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 85.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 967 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 69 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 73.5 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -438,8 +438,8 @@ Here a small sample from our simulated table:
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 311.792 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 199.1132 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 325.394 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 212.289 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -822,7 +822,7 @@ where
 
 ???
 
-The title of this slide "To Explain or to Predict?" is the name of a must-read [paper](https://projecteuclid.org/euclid.ss/1294167961) by [Shmueli (2010)](#bib-shmueli2010explain) that clarifies the distinction between predicting and explaining.
+The title of this slide "To Explain or to Predict?" is the name of a must-read [paper](https://projecteuclid.org/euclid.ss/1294167961) by &lt;a name=cite-shmueli2010explain&gt;&lt;/a&gt;[Shmueli (2010)](#bib-shmueli2010explain) that clarifies the distinction between predicting and explaining.
 
 ---
 # ML vs. Econometrics
