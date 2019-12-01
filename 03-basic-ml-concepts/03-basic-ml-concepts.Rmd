@@ -2,7 +2,7 @@
 title: "Basic Machine Learning Concepts"
 subtitle: ""
 author: "Itamar Caspi"
-date: "March 10, 2019 (updated: `r Sys.Date()`)"
+date: "December 2, 2019 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, "style/middlebury.css", "style/middlebury-fonts.css"]
