@@ -202,7 +202,7 @@ name: eda
 
 ```{r skimr, eval=FALSE}
 boston_train_raw %>% 
-  skim() %>% partition()
+  skim()
 ```
 
 (Does not come out well on these slides)
@@ -337,9 +337,9 @@ We now estimate the CV-RMSE for each value of $\lambda$.
 ```{r tune}
 boston_cv <- tune_grid(
   boston_rec,
-  model = lm_mod,
-  rs    = cv_splits,
-  grid  = lambda_grid)
+  model     = lm_mod,
+  resamples = cv_splits,
+  grid      = lambda_grid)
 
 boston_cv
 ```
@@ -350,7 +350,7 @@ boston_cv
 Let's find the top-3 performing models
 ```{r rmse}
 rmse_vals <- boston_cv %>% 
-  estimate() %>% 
+  collect_metrics() %>% 
   filter(.metric == "rmse") %>% 
   arrange(mean)
 

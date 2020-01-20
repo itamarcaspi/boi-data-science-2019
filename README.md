@@ -9,3 +9,5 @@ Lecture Notes:
 3. [Basic ML Concepts](https://gitcdn.xyz/repo/itamarcaspi/boi-data-science-2019/master/03-basic-ml-concepts/03-basic-ml-concepts.html)
 
 4. [A Typical (Supervised) ML Workflow](https://gitcdn.xyz/repo/itamarcaspi/boi-data-science-2019/master/04-ml-workflow/04-ml-workflow.html)
+
+5. [Text As Data](https://gitcdn.xyz/repo/itamarcaspi/boi-data-science-2019/master/05-text-as-data/05-text-as-data.html)
