@@ -4,7 +4,7 @@ author:
   name: Itamar Caspi
   affiliation: Hebrew University, ML for Economists, 2019
   email: caspi.itamar@gmail.com
-date: "May 26, 2019 (updated: `r Sys.Date()`)"
+date: "January 20, 2019 (updated: `r Sys.Date()`)"
 output: 
   html_document:
     theme: flatly
